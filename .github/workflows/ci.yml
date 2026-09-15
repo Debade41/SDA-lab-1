@@ -17,3 +17,11 @@ jobs:
           test -f file1.txt
           test -f file2.txt
           test -f file3.txt
+
+  trufflehog:
+    name: TruffleHog
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Scan for secrets
+        run: docker run --rm -v "$PWD:/pwd" trufflesecurity/trufflehog:latest filesystem /pwd/test-secret.txt --config=/pwd/.trufflehog.yaml --results=verified,unknown,unverified --fail --no-update
