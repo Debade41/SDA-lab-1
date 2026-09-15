@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  file-check:
+    name: File check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check project files
+        run: |
+          test -f file1.txt
+          test -f file2.txt
+          test -f file3.txt
