@@ -1,3 +1,21 @@
+## Структура проекта
+
+```text
+SDA-lab-1/
+├── backend/
+│   ├── Dockerfile
+│   └── server.py
+├── frontend/
+│   ├── Dockerfile
+│   ├── index.html
+│   └── nginx.conf
+├── docs/
+│   ├── host-diagnostics.txt
+│   └── kvm-plan.md
+├── compose.yaml
+└── README.md
+```
+
 Приложение состоит из двух сервисов:
 
 - frontend: nginx отдаёт HTML и перенаправляет запросы `/api/` на backend;
@@ -31,7 +49,7 @@ docker compose up -d --build --wait
 docker compose ps
 ```
 
-Открыть [приложение](http://localhost:8080).
+Открыть приложение по адресу `http://localhost:8080`.
 
 Схема локального подключения:
 
@@ -161,7 +179,7 @@ ssh -N -J LINUX_USER@LINUX_HOST -L 127.0.0.1:8081:127.0.0.1:8080 VM_USER@VM_IP
 Оставить терминал с туннелем открытым.
 Порт 8081 выбран отдельно от локального приложения на порту 8080.
 
-Открыть [приложение внутри VM](http://localhost:8081).
+Открыть приложение внутри VM по адресу `http://localhost:8081`.
 
 В другом терминале ноутбука проверить:
 
@@ -181,6 +199,3 @@ curl -fsS http://localhost:8081/api/message
   → nginx frontend:80
   → backend:8000
 ```
-
-Для подтверждения проверки сохранить вывод команд,
-состояние контейнеров и снимок страницы приложения.
